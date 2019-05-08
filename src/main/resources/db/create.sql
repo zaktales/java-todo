@@ -5,3 +5,8 @@ CREATE TABLE IF NOT EXISTS tasks (
   description VARCHAR,
   completed BOOLEAN
 );
+
+CREATE TABLE IF NOT EXISTS categories (
+  id int PRIMARY KEY auto_increment,
+  name VARCHAR
+);
