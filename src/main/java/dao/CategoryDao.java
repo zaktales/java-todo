@@ -2,7 +2,6 @@ package dao;
 
 import models.Category;
 import models.Task;
-
 import java.util.List;
 
 public interface CategoryDao {

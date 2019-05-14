@@ -7,16 +7,16 @@ import java.util.Objects;
 public class Task {
 
     private String description;
+    private int categoryId;
     private boolean completed;
     private LocalDateTime createdAt;
     private int id;
-    private int categoryId;
 
     public Task(String description, int categoryId){
         this.description = description;
+        this.categoryId = categoryId;
         this.completed = false;
         this.createdAt = LocalDateTime.now();
-        this.categoryId = categoryId;
     }
 
     public int getCategoryId() {
