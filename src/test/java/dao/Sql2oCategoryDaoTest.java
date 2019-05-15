@@ -3,7 +3,8 @@ package dao;
 import models.Category;
 import models.Task;
 import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -14,22 +15,30 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class Sql2oCategoryDaoTest {
-    private Sql2oCategoryDao categoryDao;
-    private Sql2oTaskDao taskDao;
-    private Connection conn;
+    private static Sql2oCategoryDao categoryDao;    //these variables are now static.
+    private static Sql2oTaskDao taskDao;            //these variables are now static.
+    private static Connection conn;                 //these variables are now static.
 
-    @Before
-    public void setUp() throws Exception {
-        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+    @BeforeClass                                    //changed to @BeforeClass (run once before running any tests in this file)
+    public static void setUp() throws Exception {   //changed to static
+        String connectionString = "jdbc:postgresql://localhost:5432/todolist_test"; // connect to postgres test database
+        Sql2o sql2o = new Sql2o(connectionString, "v", "1234");          // changed user and pass to null
         categoryDao = new Sql2oCategoryDao(sql2o);
         taskDao = new Sql2oTaskDao(sql2o);
-        conn = sql2o.open();
+        conn = sql2o.open();                        // open connection once before this test file is run
     }
 
-    @After
+    @After                                          // run after every test
     public void tearDown() throws Exception {
-        conn.close();
+        System.out.println("clearing database");
+        categoryDao.clearAllCategories();           // clear all categories after every test
+        taskDao.clearAllTasks();                    // clear all tasks after every test
+    }
+
+    @AfterClass                                     //run once after all tests in this file completed
+    public static void shutDown() throws Exception{
+        conn.close();                               // close connection once after this entire test file is finished
+        System.out.println("connection closed");
     }
 
     @Test
