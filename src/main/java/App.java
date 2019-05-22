@@ -12,10 +12,23 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
 
 public class App {
+
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+    }
+
     public static void main(String[] args) { //type “psvm + tab” to autocreate this
+        port(getHerokuAssignedPort());
         staticFileLocation("/public");
-        String connectionString = "jdbc:postgresql://localhost:5432/todolist";      //connect to todolist, not todolist_test!
-        Sql2o sql2o = new Sql2o(connectionString, "v", "1234");
+
+//        String connectionString = "jdbc:postgresql://localhost:5432/todolist";      //connect to todolist, not todolist_test!
+//        Sql2o sql2o = new Sql2o(connectionString, "v", "1234");
+        String connectionString = "jdbc:postgresql://ec2-23-21-148-223.compute-1.amazonaws.com:5432/das9arqqcn3fum";
+        Sql2o sql2o = new Sql2o(connectionString, "inbpxrhqhbakjf", "a2042a3b3e07a3f8015f0e7e1a5075d3a748b578f8c01893c589cdcce552e11d");
         Sql2oTaskDao taskDao = new Sql2oTaskDao(sql2o);
         Sql2oCategoryDao categoryDao = new Sql2oCategoryDao(sql2o);
 
