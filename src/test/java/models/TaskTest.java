@@ -100,13 +100,13 @@ public class TaskTest {
         assertEquals(Task.getAll().get(0).getId(), 2); //the one that was deleted has the id of 2
     }
 
-    @Test
-    public void deleteAllTasksDeletesAllTasks() throws Exception {
-        Task task = setupNewTask();
-        Task otherTask = setupNewTask();
-        Task.clearAllTasks();
-        assertEquals(0, Task.getAll().size());
-    }
+    // @Test
+    // public void deleteAllTasksDeletesAllTasks() throws Exception {
+    //     Task task = setupNewTask();
+    //     Task otherTask = setupNewTask();
+    //     Task.clearAllTasks();
+    //     assertEquals(0, Task.getAll().size());
+    // }
 
 
     //helper methods

@@ -11,13 +11,13 @@ public class App {
     public static void main(String[] args) { //type “psvm + tab” to autocreate this
         staticFileLocation("/public");
 
-        //get: delete all tasks
-        get("/tasks/delete", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            Task.clearAllTasks();
-            res.redirect("/");
-            return null;
-        }, new HandlebarsTemplateEngine());
+        // //get: delete all tasks
+        // get("/tasks/delete", (req, res) -> {
+        //     Map<String, Object> model = new HashMap<>();
+        //     Task.clearAllTasks();
+        //     res.redirect("/");
+        //     return null;
+        // }, new HandlebarsTemplateEngine());
 
         //get: delete an individual task
         get("/tasks/:id/delete", (req, res) -> {
