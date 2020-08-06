@@ -27,9 +27,9 @@ public class Task {
         return instances;
     }
 
-    // public static void clearAllTasks(){
-    //     instances.clear();
-    // }
+    public static void clearAllTasks(){
+        instances.clear();
+    }
 
     public boolean getCompleted(){
         return this.completed;
