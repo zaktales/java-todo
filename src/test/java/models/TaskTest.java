@@ -41,7 +41,7 @@ public class TaskTest {
     public void AllTasksContainsAllTasks_true() throws Exception {
         Task task = setupNewTask();
         Task otherTask = new Task("Brush the cat");
-        assertFalse(Task.getAll().contains(task));
+        assertTrue(Task.getAll().contains(task));
         assertTrue(Task.getAll().contains(otherTask));
     }
 
