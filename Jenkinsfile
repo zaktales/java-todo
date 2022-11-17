@@ -5,20 +5,12 @@ pipeline {
         gradle 'Gradle-6'
     }
 
-    parameters {
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-    }
 
     environment {
         VERSION_NUMBER = '1.0'
     }
 
     stages {
-        stage('Build parameters') {
-            steps {
-                echo "You chose ${params.CHOICE}"
-            }
-        }
         stage('Clone repository') {
             steps {
                 echo 'Cloning repository'
