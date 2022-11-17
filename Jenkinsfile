@@ -14,6 +14,11 @@ pipeline {
     }
 
     stages {
+        stage('Build parameters') {
+            steps {
+                echo "You chose ${params.CHOICE}"
+            }
+        }
         stage('Clone repository') {
             steps {
                 echo 'Cloning repository'
